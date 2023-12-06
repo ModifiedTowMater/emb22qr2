@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Code Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+    }
+
+    .code-display {
+      border: 1px solid #ccc;
+      padding: 20px;
+      max-width: 80%;
+      overflow: auto;
+      color: #00FF00;
+      font-size: 200%; /* Increase the font size by 100% (double the size) */
+    }
+  </style>
+</head>
+<body>
+  <div class="code-display">
+    <pre id="code"></pre>
+  </div>
+
+  <script>
+    const codeElement = document.getElementById('code');
+    const codeSnippet = `[Batterie eingesetzt, Fahrzeug eingeschaltet] Initialisierung der Kamera.
+
+
+[Kamera initialisiert] Bereit zum Scannen von QR-Codes.
+
+[QR-Code erkannt] Daten: "check_battery" & “end_session“
+[Aktion] Batteriestatus überprüfen.
+[Antwort] Spannung: normal, Ladezustand: 100%
+           Batterieüberprüfung erledigt. Batteriewechsel erfolgreich.
+
+
+[Aktion] Batteriewechsel abgeschlossen, Wechselmodus deaktivieren.
+[Antwort] Wechselmodus deaktiviert.
+    
+[Aktion] Batterie-Wechselstation verlassen.
+[Antwort] Batterie-Wechselstation wird verlassen.
+               `;
+
+    let index = 0;
+
+    function displayCode() {
+      codeElement.textContent = codeSnippet.substring(0, index);
+      if (index < codeSnippet.length) {
+        index++;
+        setTimeout(displayCode, 50); // Adjust the delay (in milliseconds) to control the speed
+      }
+    }
+
+    // Call the function to start displaying code
+    displayCode();
+  </script>
+</body>
+</html>
+
